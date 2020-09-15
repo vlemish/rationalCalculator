@@ -2,6 +2,17 @@
 {
     public class TypeCaster
     {
-        public string Value { get; set; }
+        private string _value;
+        public string Value
+        {
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = value == "" ? "0.0/0" : value;
+            }
+        }
     }
 }
