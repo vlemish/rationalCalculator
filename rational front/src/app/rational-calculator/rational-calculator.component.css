@@ -1,0 +1,110 @@
+
+.calc-body{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    background-color: black;
+    width: 600px;
+    height: 770px;
+}
+.calc-display{
+    width: 100%;
+    height: 250px;
+    background-color: black;
+    position: relative
+}
+.display-main{
+    width: 95%;
+    height: 210px;
+    background-color: green;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+}
+.display-container{
+    width: 570px;
+    height: 60px;
+    margin-top: 60px;
+}
+.form-content{
+    padding-left: 10px;
+    width:200px;
+    height:60px;
+}
+.display-content{
+    width: 350px;
+    height: 60px;
+}
+.display-result{
+    width: 110px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+.calc-buttons{
+    padding-top:10px;
+    padding-bottom:10px;
+    height: 520px;
+    width: 570px;
+    margin-left: auto; margin-right: auto;
+}
+
+.div-num, .div-denum, .div-int{
+    height: 26px;
+    width: 40px;
+    font-size: 21px;
+    text-align: center;    
+}
+.div-num{
+    border-bottom: 1px solid black;
+}
+.div-operation{
+    height: 26px;
+    width: 22px;
+    font-size: 21px;     
+}
+
+/* table{
+    border-collapse:separate; 
+    border-spacing: 0 10px;
+} */
+
+.buttons-table{
+    height: 520px;
+    width: 570px;
+    margin-left: auto; margin-right: auto;
+    border-collapse:separate; 
+    border-spacing: 0 10px;
+    padding-bottom:20px;
+}
+
+.btn-spec{
+    background-color: black;
+    width: 280px;
+    height: 80px;
+}
+
+.btn-generic{
+    background-color: black;
+    width: 135px;
+    height: 80px;
+}
+
+.td-generic-size{
+    width: 135px;
+    height: 80px;
+}
+
+.td-spec-size{
+  width: 280px;
+  height: 80px;
+}
+
+.input-size{
+    width:80px;
+}
