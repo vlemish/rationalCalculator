@@ -54,12 +54,12 @@
                                 =
                             </div>
                         </td>
-                        <td colspan="2">
+                        <td colspan="2" *ngIf="isNumber || isMixedRN">
                             <div class="div-int">
                                 {{this.resultedRN.integer}}
                             </div>
                         </td>
-                        <td>
+                        <td *ngIf="isFraction || isMixedRN">
                             <div class="div-num">
                                 {{this.resultedRN.numerator}} 
                             </div>

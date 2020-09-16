@@ -35,7 +35,14 @@ export class RationalCalculatorComponent implements OnInit {
   };
 
   inputFocus : number = 0;
-  
+
+
+  //boolens to find out how to print rational number
+  isNumber : boolean = false;
+  isMixedRN : boolean = false;
+  isFraction : boolean =  false;
+
+
   constructor(private service: HttpService) { }
 
   ngOnInit(): void {
@@ -49,6 +56,9 @@ export class RationalCalculatorComponent implements OnInit {
         this.resultedRN=rn;
         console.log(this.resultedRN);
         this.isShow = true;
+        this.isNumber=this.resultedRN.integer>0 && this.resultedRN.numerator<=0;
+        this.isMixedRN=this.resultedRN.integer>0 &&  this.resultedRN.numerator>0;
+        this.isFraction=this.resultedRN.integer<=0 && this.resultedRN.numerator>0;
       }
         );    
   }
@@ -104,7 +114,9 @@ export class RationalCalculatorComponent implements OnInit {
 
           this.rNumbers = this.rNumbers.slice(1,this.rNumbers.length);
           this.expression = this.expression + " " + o + " " + this.rNumber.toString();
+          this.operators = this.operators.slice(1, this.operators.length);
           this.rNumbers.push(new RationalNumber(this.rNumber.integer, this.rNumber.numerator, this.rNumber.denumerator)); 
+          this.operators+= o;
         }
 
         else{
