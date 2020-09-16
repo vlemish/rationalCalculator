@@ -35,6 +35,7 @@ export class RationalCalculatorComponent implements OnInit {
   };
 
   inputFocus : number = 0;
+
   constructor(private service: HttpService) { }
 
   ngOnInit(): void {
@@ -165,85 +166,68 @@ export class RationalCalculatorComponent implements OnInit {
     switch(e.keyCode){
            //Numeric buttons
         case 48:{
-            let el = document.getElementsByName('Button0');
-            el[0].focus();
+            this.imitateKeyPressing('Button0');
             break;
         }
         case 49:{
-            let el = document.getElementsByName('Button1');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('Button1');
             break;
         }
         case 50:{
-            let el = document.getElementsByName('Button2');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('Button2');
             break;
         }
         case 51:{
-            let el = document.getElementsByName('Button3');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('Button3');
             break;
         }
         case 52:{
-            let el = document.getElementsByName('Button4');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('Button4');
             break;
         }
         case 53:{
-            let el = document.getElementsByName('Button5');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('Button5');
             break;
         }
         case 54:{
-            let el = document.getElementsByName('Button6');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('Button6');
             break;
         }
         case 55:{
-            let el = document.getElementsByName('Button7');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('Button7');
             break;
         }
         case 56:{
-            let el = document.getElementsByName('Button8');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('Button8');
             break;
         }
         case 57:{
-            let el = document.getElementsByName('Button9');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('Button9');
             break;
         }   
         
+        //remove 1 entry (C button)
+        case 8:{
+          this.imitateKeyPressing('CButton');
+          break;
+        }
+
+        //Operations
         case 187:{
-            let el = document.getElementsByName('EqualsButton');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('EqualsButton');
             break;
         }
 
         case 189:{
-            let el = document.getElementsByName('MinusButton');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('MinusButton');
             break;
         }
         
         case 191:{
-            let el = document.getElementsByName('DivideButton');
-            el[0].focus();
-            el[0].click();
+            this.imitateKeyPressing('DivideButton');
             break;
         }
+
         //UNDONE
         case 37:{
           this.changeInputFocus(-1);
@@ -252,7 +236,7 @@ export class RationalCalculatorComponent implements OnInit {
           this.changeInputFocus(+1);
         }
     }
-
+    
     if(e.shiftKey && e.keyCode == 56){
         let el = document.getElementsByName('MultiplyButton');
         el[0].focus();
@@ -263,12 +247,7 @@ export class RationalCalculatorComponent implements OnInit {
       let el = document.getElementsByName('PlusButton');
       el[0].focus();
       el[0].click();
-  }
-
-        // let vari = document.getElementsByName('Button4');
-    // vari[0].focus();
-    // console.log(vari[0]);
-
+  }     
 }
 
 getIntegerInput(){
@@ -295,7 +274,7 @@ changeInputFocus(changer : number){
     this.inputFocus=2;
   }
 
-  //sets focus according to value of inputFocus variable
+  //sets the focus according to the value of inputFocus variable
   let inputs = this.inputForms;
   switch(this.inputFocus){
 
@@ -310,7 +289,12 @@ changeInputFocus(changer : number){
       inputs['denum'][0].focus();
     }
   }
+}
 
+imitateKeyPressing(name : string){
+  let el = document.getElementsByName(name);
+  el[0].focus();
+  el[0].click();
 }
 
 }
