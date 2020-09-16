@@ -35,7 +35,7 @@ export class RationalCalculatorComponent implements OnInit {
   };
 
   inputFocus : number = 0;
-
+  
   constructor(private service: HttpService) { }
 
   ngOnInit(): void {
@@ -97,6 +97,14 @@ export class RationalCalculatorComponent implements OnInit {
           this.expression = this.rNumber.toString();
           this.rNumbers.push(new RationalNumber(this.rNumber.integer, this.rNumber.numerator, this.rNumber.denumerator));
           console.log(this.rNumbers);
+          return;
+        }
+
+        else if(this.rNumbers.length>2){
+
+          this.rNumbers = this.rNumbers.slice(1,this.rNumbers.length);
+          this.expression = this.expression + " " + o + " " + this.rNumber.toString();
+          this.rNumbers.push(new RationalNumber(this.rNumber.integer, this.rNumber.numerator, this.rNumber.denumerator)); 
         }
 
         else{
@@ -212,11 +220,8 @@ export class RationalCalculatorComponent implements OnInit {
           break;
         }
 
-        //Operations
-        case 187:{
-            this.imitateKeyPressing('EqualsButton');
-            break;
-        }
+        //Operations (-,/)
+
 
         case 189:{
             this.imitateKeyPressing('MinusButton');
@@ -228,27 +233,32 @@ export class RationalCalculatorComponent implements OnInit {
             break;
         }
 
-        //UNDONE
+        //navigates between inputs forms
         case 37:{
-          this.changeInputFocus(-1);
+          this.changeInputFocus(+1);
         }
         case 39:{
           this.changeInputFocus(+1);
         }
     }
-    
-    if(e.shiftKey && e.keyCode == 56){
-        let el = document.getElementsByName('MultiplyButton');
-        el[0].focus();
-        el[0].click();
-    }
 
-    if(e.shiftKey && e.keyCode == 187){
-      let el = document.getElementsByName('PlusButton');
-      el[0].focus();
-      el[0].click();
+    
+    //Operations (*,+,=)
+    if(e.shiftKey && e.keyCode == 56){
+        this.imitateKeyPressing('MultiplyButton');
+    }
+   
+    else if(e.shiftKey && e.keyCode == 187){
+      this.imitateKeyPressing('PlusButton');
   }     
+
+    else if(e.keyCode == 187){
+      this.imitateKeyPressing('EqualsButton');
+  }
+
+
 }
+
 
 getIntegerInput(){
   return document.getElementsByName('int');
@@ -267,11 +277,11 @@ changeInputFocus(changer : number){
 
   //sets the range (input can't be lesser than zero and higher than two!)
   if(this.inputFocus<0){
-    this.inputFocus=0;
+    this.inputFocus=2;
   }
 
   else if(this.inputFocus>2){
-    this.inputFocus=2;
+    this.inputFocus=0;
   }
 
   //sets the focus according to the value of inputFocus variable
@@ -280,13 +290,16 @@ changeInputFocus(changer : number){
 
     case 0:{
       inputs['int'][0].focus();
-      console.log("hh");
+      // this.formsFocus['int']=true;
+      break;
     }
     case 1:{
       inputs['num'][0].focus();
+      break
     }
     case 2:{
       inputs['denum'][0].focus();
+      break
     }
   }
 }
