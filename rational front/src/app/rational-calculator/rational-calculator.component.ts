@@ -9,6 +9,7 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./rational-calculator.component.css']
 })
 export class RationalCalculatorComponent implements OnInit {
+ 
 
   expression : string = "";
   operators  :  string = "";
@@ -42,6 +43,18 @@ export class RationalCalculatorComponent implements OnInit {
   isMixedRN : boolean = false;
   isFraction : boolean =  false;
 
+  //variable for dynamic changing width of "display-content" div
+  _divWidth : number = 0;
+
+  get DivWidth(){
+    return this._divWidth;
+  }
+
+  set DivWidth(value : number){
+    if(this.DivWidth<=400 || value === 0){
+      this._divWidth = value;
+    }
+  }
 
   constructor(private service: HttpService) { }
 
@@ -51,6 +64,7 @@ export class RationalCalculatorComponent implements OnInit {
 
   //sends the expression to the server and gets the result
   onEqualsPressed(){
+    this.expression = this.expression + " " + this.operators[this.operators.length-1] + " " + this.rNumber.toString();
     this.service.getResult(this.expression).subscribe(rn=>
       {
         this.resultedRN=rn;
@@ -59,11 +73,12 @@ export class RationalCalculatorComponent implements OnInit {
         this.isNumber=this.resultedRN.integer>0 && this.resultedRN.numerator<=0;
         this.isMixedRN=this.resultedRN.integer>0 &&  this.resultedRN.numerator>0;
         this.isFraction=this.resultedRN.integer<=0 && this.resultedRN.numerator>0;
+        
       }
         );    
   }
 
-  //WORKS ONLY WITH FORM!
+  //WORKS ONLY IN FORM!
   onRemoveClicked(){
 
     if(this.isInteger){
@@ -87,47 +102,54 @@ export class RationalCalculatorComponent implements OnInit {
 
   //clears everything on the display and sets everything to its default
   onClearClicked(){
-    this.rNumber.integer = 0;
-    this.rNumber.numerator = 0;
-    this.rNumber.denumerator = 0;
-    this.resultedRN.integer = 0;
-    this.resultedRN.numerator = 0;
-    this.resultedRN.denumerator = 0;
+    this.rNumber.setDefault;
+    this.resultedRN.setDefault;
     this.rNumbers=[];
     this.operators="";
     this.expression="";
     this.isShow=false;
+    this.DivWidth=0;
+    console.log(this.expression);
   }
 
   //handles button click on operators and adds current operator and rational number to string
   onOperatorClicked(o : string){
 
+    this.DivWidth += 103;
+  
+
         if(this.expression.length<=0){
 
           this.expression = this.rNumber.toString();
           this.rNumbers.push(new RationalNumber(this.rNumber.integer, this.rNumber.numerator, this.rNumber.denumerator));
+          this.operators+=o;
           console.log(this.rNumbers);
+          this.rNumber.setDefault();
           return;
         }
 
-        else if(this.rNumbers.length>2){
+        else if(this.rNumbers.length>=4){
 
           this.rNumbers = this.rNumbers.slice(1,this.rNumbers.length);
           this.expression = this.expression + " " + o + " " + this.rNumber.toString();
           this.operators = this.operators.slice(1, this.operators.length);
           this.rNumbers.push(new RationalNumber(this.rNumber.integer, this.rNumber.numerator, this.rNumber.denumerator)); 
           this.operators+= o;
+          this.rNumber.setDefault();
+          return;
         }
+
 
         else{
 
           this.expression = this.expression + " " + o + " " + this.rNumber.toString();
           this.rNumbers.push(new RationalNumber(this.rNumber.integer, this.rNumber.numerator, this.rNumber.denumerator));
           this.operators+= o;
-          console.log(this.operators);
+          this.rNumber.setDefault();
+          return;
+      
         }
-
-        console.log(this.expression);
+        
   }
 
   //handles button click and adds number to correct input field
@@ -181,8 +203,7 @@ export class RationalCalculatorComponent implements OnInit {
 
 
   @HostListener('document:keydown', ['$event']) onKeyPressed(e){
-    // console.log(this.button1);
-    console.log(e.keyCode);
+
     switch(e.keyCode){
            //Numeric buttons
         case 48:{
@@ -245,7 +266,7 @@ export class RationalCalculatorComponent implements OnInit {
             break;
         }
 
-        //navigates between inputs forms
+        //navigates between input forms
         case 37:{
           this.changeInputFocus(+1);
         }
@@ -302,7 +323,6 @@ changeInputFocus(changer : number){
 
     case 0:{
       inputs['int'][0].focus();
-      // this.formsFocus['int']=true;
       break;
     }
     case 1:{

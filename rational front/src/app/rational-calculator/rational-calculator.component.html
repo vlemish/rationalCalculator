@@ -2,25 +2,7 @@
     <div class="calc-display">
         <div class="display-main">
             <div class="display-container">
-                <form class="form-content" style="float:left">
-                    <table>
-                        <tr>
-                            <td colspan="2">
-                                <input type="number" name="int" class="input-size" [(ngModel)]="this.rNumber.integer" (focus)="onFocus('integer')" #integer>
-                            </td>
-                            <td>
-                                <input type="number" name="num" class="input-size" [(ngModel)]="this.rNumber.numerator" (focus)="onFocus('numerator')" #numerator>
-                                <input type="number" name="denum" class="input-size" [(ngModel)]="this.rNumber.denumerator" (focus)="onFocus('denumerator')" #denumerator>  
-                            </td>
-                            <td colspan="2">
-                                <div class="div-operation">
-                                    =>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>             
-                </form>
-                <div class="display-content" style="float:right; text-align: center;">
+                <div class="display-content" style="float:left; text-align: center;" [style.width.px]="[DivWidth]" >
                     <!-- {{expression}} -->
                     <table>
                     <tr style="display:inline-block"  *ngFor="let r of rNumbers; let i = index">
@@ -45,8 +27,45 @@
                       </tr>
                 </table>
                 </div>
+                <form class="form-content" style="float:left">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <input type="number" name="int" class="input-size" [(ngModel)]="this.rNumber.integer" (focus)="onFocus('integer')" #integer>
+                            </td>
+                            <td>
+                                <input type="number" name="num" class="input-size" [(ngModel)]="this.rNumber.numerator" (focus)="onFocus('numerator')" #numerator style="border-bottom: 1px solid black;">
+                                <input type="number" name="denum" class="input-size" [(ngModel)]="this.rNumber.denumerator" (focus)="onFocus('denumerator')" #denumerator>  
+                            </td>
+                        </tr>
+                    </table>             
+                </form>
+                <div class="display-result" *ngIf="isShow" style="float:left">
+                    <table>
+                           <tr>
+                            <td colspan="2">
+                                <div class="div-operation">
+                                    =
+                                </div>
+                            </td>
+                            <td colspan="2" *ngIf="isNumber || isMixedRN" >
+                                <div class="div-int">
+                                    {{this.resultedRN.integer}}
+                                </div>
+                            </td>
+                            <td *ngIf="isFraction || isMixedRN">
+                                <div class="div-num">
+                                    {{this.resultedRN.numerator}} 
+                                </div>
+                                <div class="div-denum">
+                                    {{this.resultedRN.denumerator}}
+                                </div>
+                            </td>
+                        </tr>
+                    </table> 
+                </div>
             </div>
-            <div class="display-result" *ngIf="isShow">
+            <!-- <div class="display-result" *ngIf="isShow">
                 <table>
                        <tr>
                         <td colspan="2">
@@ -69,7 +88,7 @@
                         </td>
                     </tr>
                 </table> 
-            </div>
+            </div> -->
         </div>
     </div>
 <div class="calc-buttons">
@@ -99,7 +118,7 @@
     <td class="td-generic-size"><button name="PlusButton" class="btn btn-primary btn-generic" (click)="onOperatorClicked('+')" >+</button></td>
 </tr>
 <tr class="btn-first-row">
-    <td colspan="3"><button name="Button0" class="btn btn-primary btn-generic " style="width:421px" >0</button></td>
+    <td colspan="3"><button name="Button0" class="btn btn-primary btn-generic " style="width:421px" (click)="onNumberClicked('0')">0</button></td>
     <td class="td-generic-size"><button name="EqualsButton" class="btn btn-primary btn-generic" (click)="onEqualsPressed()" >=</button></td>
 </tr>
 </table>

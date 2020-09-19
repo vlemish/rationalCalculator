@@ -14,4 +14,10 @@ export class RationalNumber {
     toString() : string {
         return this.integer + "." + this.numerator + "/" + this.denumerator;
     }
+
+   public setDefault() : void {
+        this.integer=0;
+        this.numerator=0;
+        this.denumerator=0;
+    }
 }
