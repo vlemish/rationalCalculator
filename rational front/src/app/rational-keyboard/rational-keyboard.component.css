@@ -1,0 +1,44 @@
+.calc-buttons{
+    padding-top:10px;
+    padding-bottom:10px;
+    height: 520px;
+    width: 570px;
+    margin-left: auto; margin-right: auto;
+}
+
+
+/* table{
+    border-collapse:separate; 
+    border-spacing: 0 10px;
+} */
+
+.buttons-table{
+    height: 520px;
+    width: 570px;
+    margin-left: auto; margin-right: auto;
+    border-collapse:separate; 
+    border-spacing: 0 10px;
+    padding-bottom:20px;
+}
+
+.btn-spec{
+    background-color: black;
+    width: 280px;
+    height: 80px;
+}
+
+.btn-generic{
+    background-color: black;
+    width: 135px;
+    height: 80px;
+}
+
+.td-generic-size{
+    width: 135px;
+    height: 80px;
+}
+
+.td-spec-size{
+  width: 280px;
+  height: 80px;
+}

@@ -1,0 +1,33 @@
+<rational-display></rational-display>
+<div class="calc-buttons">
+    <table class="buttons-table">
+    <tr>
+        <td class="td-generic-size"><button name="CButton" class="btn btn-primary btn-generic" (click)="onRemoveClicked()">C</button></td>
+        <td colspan="2" class="td-spec-size"><button name="CEButton" class="btn btn-primary btn-spec" (click)="onClearClicked()">CE</button></td>
+        <td class="td-generic-size"><button name="DivideButton" class="btn btn-primary btn-generic" (click)="onOperatorClicked('/')" >/</button></td>
+    
+    </tr>
+    <tr>
+        <td class="td-generic-size"><button name="Button7" class="btn btn-primary btn-generic" (click)="onNumberClicked('7')" >7</button></td>
+        <td class="td-generic-size"><button name="Button8" class="btn btn-primary btn-generic" (click)="onNumberClicked('8')" >8</button></td>
+        <td class="td-generic-size"><button name="Button9" class="btn btn-primary btn-generic" (click)="onNumberClicked('9')" >9</button></td>
+        <td class="td-generic-size"><button name="MultiplyButton" class="btn btn-primary btn-generic" (click)="onOperatorClicked('*')" >*</button></td>
+    </tr>
+    <tr>
+        <td class="td-generic-size"><button name="Button4" class="btn btn-primary btn-generic" (click)="onNumberClicked('4')" >4</button></td>
+        <td class="td-generic-size"><button name="Button5" class="btn btn-primary btn-generic" (click)="onNumberClicked('5')" >5</button></td>
+        <td class="td-generic-size"><button name="Button6" class="btn btn-primary btn-generic" (click)="onNumberClicked('6')" >6</button></td>
+        <td class="td-generic-size"><button name="MinusButton" class="btn btn-primary btn-generic" (click)="onOperatorClicked('-')" >-</button></td>
+    </tr>
+    <tr>
+        <td class="td-generic-size"><button name="Button1" class="btn btn-primary btn-generic" (click)="onNumberClicked('1')" >1</button></td>
+        <td class="td-generic-size"><button name="Button2" class="btn btn-primary btn-generic" (click)="onNumberClicked('2')" >2</button></td>
+        <td class="td-generic-size"><button name="Button3" class="btn btn-primary btn-generic" (click)="onNumberClicked('3')" >3</button></td>
+        <td class="td-generic-size"><button name="PlusButton" class="btn btn-primary btn-generic" (click)="onOperatorClicked('+')" >+</button></td>
+    </tr>
+    <tr class="btn-first-row">
+        <td colspan="3"><button name="Button0" class="btn btn-primary btn-generic " style="width:421px" (click)="onNumberClicked('0')">0</button></td>
+        <td class="td-generic-size"><button name="EqualsButton" class="btn btn-primary btn-generic" (click)="onEqualsPressed()" >=</button></td>
+    </tr>
+    </table>
+    </div>

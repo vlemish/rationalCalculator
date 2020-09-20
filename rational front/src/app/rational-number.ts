@@ -18,6 +18,6 @@ export class RationalNumber {
    public setDefault() : void {
         this.integer=0;
         this.numerator=0;
-        this.denumerator=0;
+        this.denumerator=1;
     }
 }
