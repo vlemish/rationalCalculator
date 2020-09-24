@@ -85,7 +85,7 @@ export class RationalKeyboardComponent implements AfterViewInit {
           return;
         }
 
-        else if(this.display.rNumbers.length>=4){
+        else if(this.display.rNumbers.length>=3){
 
           this.display.rNumbers = this.display.rNumbers.slice(1,this.display.rNumbers.length);
           this.display.expression = this.display.expression + " " + o + " " + this.display.rNumber.toString();

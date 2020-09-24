@@ -49,7 +49,7 @@ export class RationalDisplayComponent implements OnInit {
   }
 
   set DivWidth(value : number){
-    if(this.DivWidth<=400 || value === 0){
+    if(this.DivWidth<=300 || value === 0){
       this._divWidth = value;
     }
   }
